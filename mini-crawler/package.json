@@ -1,0 +1,22 @@
+{
+  "name": "mini-crawler",
+  "version": "1.0.0",
+  "description": "Mini web crawler that generates a sitemap.xml",
+  "main": "crawler.js",
+  "scripts": {
+    "start": "node crawler.js"
+  },
+  "keywords": [
+    "crawler",
+    "sitemap",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "minimist": "^1.2.8",
+    "xmlbuilder2": "^3.1.1"
+  }
+}

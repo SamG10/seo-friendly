@@ -1,9 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SEO Friendly</title>
+    <meta
+      name="description"
+      content="Mini-site de démonstration pour un exercice SEO. Explorez nos services et découvrez notre entreprise."
+    />
+    <title>Accueil - Mini-Site SEO</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Bienvenue sur notre Mini-Site</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="services.html">Nos services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="blog/article1.html">Blog article 1</a></li>
+          <li><a href="blog/article2.html">Blog article 2</a></li>
+          <li><a href="page-qui-nexiste-pas.html">Lien cassé</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <section>
+          <h2>Notre entreprise</h2>
+          <p>
+            Bienvenue sur notre site de démonstration pour un exercice SEO. Nous
+            sommes une entreprise fictive spécialisée dans les solutions
+            digitales.
+          </p>
+          <p>
+            Découvrez nos services et apprenez-en plus sur notre entreprise en
+            navigant à travers les différentes pages de ce site.
+          </p>
+          <img
+            src="https://picsum.photos/800/400"
+            alt="Image de présentation de notre entreprise"
+          />
+          <a href="about.html" class="btn">En savoir plus</a>
+        </section>
+
+        <section>
+          <h2>Nos derniers articles</h2>
+          <div class="card-grid">
+            <article>
+              <h3>Bonnes pratiques SEO</h3>
+              <p>
+                Découvrez notre premier article sur les bonnes pratiques SEO
+                pour améliorer le référencement de votre site web.
+              </p>
+              <a href="blog/article1.html" class="btn">Lire la suite</a>
+            </article>
+
+            <article>
+              <h3>Optimisation SEO avancée</h3>
+              <p>
+                Comment optimiser votre site pour les moteurs de recherche avec
+                des techniques avancées et éprouvées.
+              </p>
+              <a href="blog/article2.html" class="btn">Lire la suite</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 Mini-Site SEO |
+          <a href="https://www.google.com" target="_blank" rel="noopener"
+            >Lien externe</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>
