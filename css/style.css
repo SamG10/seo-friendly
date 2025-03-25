@@ -1,1 +1,115 @@
 *,body{padding:0}a,h1{color:var(--primary-color)}header,main{background-color:#fff}article,main{border-radius:8px}article,header{margin-bottom:2rem;padding:1.5rem;box-shadow:var(--shadow)}article,header,img,main{box-shadow:var(--shadow)}footer,main{padding:2rem}.text-center,footer{text-align:center}:root{--primary-color:#4361ee;--primary-dark:#3a56d4;--secondary-color:#7209b7;--accent-color:#4cc9f0;--dark-color:#2b2d42;--light-color:#f8f9fa;--gray-color:#e9ecef;--text-color:#2b2d42;--shadow:0 4px 6px rgba(0, 0, 0, 0.1);--transition:all 0.3s ease}*{margin:0;box-sizing:border-box}body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.6;color:var(--text-color);background-color:var(--light-color);max-width:1200px;margin:0 auto}h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.2;margin-bottom:1rem}h1{font-size:2.5rem}h2{font-size:2rem;color:var(--dark-color)}h3{font-size:1.5rem;color:var(--secondary-color)}p{margin-bottom:1.5rem;font-size:1.1rem}a{text-decoration:none;transition:var(--transition)}a:hover{color:var(--primary-dark)}.container{width:100%;padding:0 1.5rem}.btn,button[type=submit]{background-color:var(--primary-color);color:#fff;padding:.75rem 1.5rem;font-weight:600;cursor:pointer;transition:var(--transition)}header{position:relative;border-radius:0}nav{margin-top:1.5rem}nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:1rem}nav ul li a{display:block;padding:.5rem 1rem;font-weight:500;border-radius:4px;transition:var(--transition)}nav ul li a:hover{background-color:var(--accent-color);color:#fff}main{margin-bottom:2rem}section{margin-bottom:3rem}article{transition:var(--transition);border:none}article:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.1)}img{max-width:100%;height:auto;border-radius:8px;margin:1.5rem 0}.btn{display:inline-block;border-radius:4px;border:none}.btn:hover,button[type=submit]:hover{background-color:var(--primary-dark);transform:translateY(-2px)}footer{background-color:var(--dark-color);color:#fff;border-radius:8px 8px 0 0}footer a{color:var(--accent-color)}footer a:hover{color:#fff}form{display:grid;gap:1.5rem;max-width:600px}input,textarea{padding:.75rem;border:1px solid var(--gray-color);border-radius:4px;font-family:inherit;transition:var(--transition)}input:focus,textarea:focus{outline:0;border-color:var(--primary-color);box-shadow:0 0 0 3px rgba(67,97,238,.3)}button[type=submit]{border:none;border-radius:4px}@media (max-width:768px){nav ul{flex-direction:column}h1{font-size:2rem}h2{font-size:1.75rem}h3{font-size:1.3rem}}.mt-2{margin-top:2rem}.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+
+/* Article Styles */
+.article-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.article-meta {
+    color: #666;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.article-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.article-content {
+    line-height: 1.6;
+}
+
+.article-content h2 {
+    color: #333;
+    margin: 2rem 0 1rem;
+}
+
+.article-content ul, 
+.article-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin: 0.5rem 0;
+}
+
+/* Social Share Buttons */
+.social-share {
+    margin: 3rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.share-button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.share-button:hover {
+    opacity: 0.9;
+}
+
+.share-button.twitter {
+    background-color: #1DA1F2;
+}
+
+.share-button.facebook {
+    background-color: #4267B2;
+}
+
+.share-button.linkedin {
+    background-color: #0077B5;
+}
+
+/* Language Switch */
+.language-switch {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.language-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.language-link:hover {
+    background-color: #e9ecef;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .article-container {
+        padding: 1rem;
+    }
+    
+    .share-buttons {
+        flex-direction: column;
+    }
+    
+    .share-button {
+        text-align: center;
+    }
+}
