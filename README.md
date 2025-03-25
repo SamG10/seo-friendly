@@ -24,9 +24,9 @@ Concevoir un mini-site web statique, structuré de manière à être **explorabl
 ### 💡 Contenu recommandé :
 
 - Une page d’accueil (`index.html`)
-- Une page “À propos”
-- Une page “Nos services”
-- Une page “Contact”
+- Une page "À propos"
+- Une page "Nos services"
+- Une page "Contact"
 - Une ou deux pages de blog ou articles
 
 ---
@@ -142,3 +142,59 @@ node crawler.js --url=http://localhost:8080 --maxDepth=2
 
 📣 **Conseil** : testez votre `sitemap.xml` ici →  
 👉 [https://www.xml-sitemaps.com/validate-xml-sitemap.html](https://www.xml-sitemaps.com/validate-xml-sitemap.html)
+
+## 📈 Liste des optimisations réalisées
+
+### Optimisations SEO
+
+- Utilisation de balises sémantiques HTML5 (`<header>`, `<main>`, `<footer>`, `<nav>`, `<article>`, `<section>`)
+- Structure hiérarchique des titres correcte (h1, h2, h3)
+- Balises meta description présentes sur les pages principales
+- Attributs alt descriptifs sur les images
+- URLs propres et descriptives
+- Navigation claire et accessible
+
+### Optimisations Performance
+
+- Utilisation de `preconnect` pour les polices Google Fonts
+- Chargement différé des images avec `loading="lazy"`
+- CSS optimisé et minifié
+- Utilisation de variables CSS pour une maintenance facilitée
+- Images au format WebP pour un meilleur rendement
+- Design responsive avec media queries
+
+### Optimisations UX/UI
+
+- Interface utilisateur moderne et épurée
+- Animations subtiles pour améliorer l'interaction
+- Système de grille flexible pour les articles
+- Design responsive adapté aux mobiles
+- Contraste des couleurs optimisé pour l'accessibilité
+- Transitions fluides pour les interactions
+
+### Optimisations Code
+
+- Structure de projet claire et organisée
+- Code HTML bien indenté et commenté
+- Utilisation de classes CSS réutilisables
+- Système de design cohérent avec variables CSS
+- Gestion des états hover et focus
+- Support des navigateurs modernes
+
+## 🖼️ Liens des images
+
+### Rapport initial Lighthouse (Desktop)
+
+- ![Initial desktop](./assets/initialD.png)
+
+### Rapport initial Lighthouse (Mobile)
+
+- ![Initial mobile](./assets/initialM.png)
+
+### Rapport après optimisation du code (Desktop)
+
+- ![Optimisé desktop](./assets/optimiseD.png)
+
+### Rapport après optimisation du code (Mobile)
+
+- ![Optimisé mobile](./assets/optimiseM.png)

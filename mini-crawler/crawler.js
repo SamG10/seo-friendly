@@ -1,153 +1,80 @@
 #!/usr/bin/env node
-
-const axios = require("axios");
-const cheerio = require("cheerio");
-const fs = require("fs");
-const path = require("path");
-const url = require("url");
-const minimist = require("minimist");
-const { create } = require("xmlbuilder2");
-
-// Parse command-line arguments
-const argv = minimist(process.argv.slice(2));
-const baseUrl = argv.url || "http://localhost:8080";
-const maxDepth = argv.maxDepth || 3;
-
-// Set to track visited URLs
-const visitedUrls = new Set();
-// Array to store valid URLs for sitemap
-const sitemapUrls = [];
-
-/**
- * Normalize URL to prevent duplicates
- */
-function normalizeUrl(urlString, base) {
-  // Parse the URL
-  const parsedUrl = new URL(urlString, base);
-  // Remove trailing slash and normalize to lowercase
-  return parsedUrl.href.replace(/\/$/, "").toLowerCase();
+const axios = require("axios"),
+  cheerio = require("cheerio"),
+  fs = require("fs"),
+  path = require("path"),
+  url = require("url"),
+  minimist = require("minimist"),
+  { create: e } = require("xmlbuilder2"),
+  argv = minimist(process.argv.slice(2)),
+  baseUrl = argv.url || "http://localhost:8080",
+  maxDepth = argv.maxDepth || 3,
+  visitedUrls = new Set(),
+  sitemapUrls = [];
+function normalizeUrl(e, r) {
+  let t = new URL(e, r);
+  return t.href.replace(/\/$/, "").toLowerCase();
 }
-
-/**
- * Check if URL is valid for crawling
- */
-function isValidUrl(urlString, baseUrlObj) {
-  // Skip if null or empty
-  if (!urlString) return false;
-
+function isValidUrl(e, r) {
+  if (!e) return !1;
   try {
-    // Parse URL
-    const parsedUrl = new URL(urlString, baseUrlObj.href);
-
-    // Check if it's from the same origin
-    if (parsedUrl.origin !== baseUrlObj.origin) return false;
-
-    // Skip anchors that point to the same page
-    if (urlString.startsWith("#")) return false;
-
-    // Skip file extensions to ignore
-    const extensionsToIgnore = [
-      ".jpg",
-      ".jpeg",
-      ".png",
-      ".gif",
-      ".pdf",
-      ".zip",
-      ".css",
-      ".js",
-    ];
+    let t = new URL(e, r.href);
     if (
-      extensionsToIgnore.some((ext) =>
-        parsedUrl.pathname.toLowerCase().endsWith(ext)
+      t.origin !== r.origin ||
+      e.startsWith("#") ||
+      [".jpg", ".jpeg", ".png", ".gif", ".pdf", ".zip", ".css", ".js"].some(
+        (e) => t.pathname.toLowerCase().endsWith(e)
       )
     )
-      return false;
-
-    return true;
-  } catch (error) {
-    return false;
+      return !1;
+    return !0;
+  } catch (a) {
+    return !1;
   }
 }
-
-/**
- * Crawl a URL and its links recursively
- */
-async function crawl(urlToCrawl, currentDepth = 0) {
-  // Stop if we've reached max depth
-  if (currentDepth > maxDepth) {
-    return;
-  }
-
-  // Skip if already visited
-  const normalizedUrl = normalizeUrl(urlToCrawl, baseUrl);
-  if (visitedUrls.has(normalizedUrl)) {
-    return;
-  }
-
-  console.log(`Crawling: ${normalizedUrl} (depth: ${currentDepth})`);
-
-  // Mark as visited
-  visitedUrls.add(normalizedUrl);
-  sitemapUrls.push(normalizedUrl);
-
-  try {
-    // Fetch the page
-    const response = await axios.get(normalizedUrl);
-    const $ = cheerio.load(response.data);
-
-    // Get base URL object
-    const baseUrlObj = new URL(baseUrl);
-
-    // Find all links
-    const links = $("a[href]")
-      .map((i, el) => $(el).attr("href"))
-      .get()
-      .filter((href) => isValidUrl(href, baseUrlObj))
-      .map((href) => normalizeUrl(href, normalizedUrl));
-
-    // Crawl each valid link recursively
-    for (const link of links) {
-      await crawl(link, currentDepth + 1);
+async function crawl(e, r = 0) {
+  if (r > maxDepth) return;
+  let t = normalizeUrl(e, baseUrl);
+  if (!visitedUrls.has(t)) {
+    console.log(`Crawling: ${t} (depth: ${r})`),
+      visitedUrls.add(t),
+      sitemapUrls.push(t);
+    try {
+      let a = await axios.get(t),
+        i = cheerio.load(a.data),
+        l = new URL(baseUrl),
+        s = i("a[href]")
+          .map((e, r) => i(r).attr("href"))
+          .get()
+          .filter((e) => isValidUrl(e, l))
+          .map((e) => normalizeUrl(e, t));
+      for (let n of s) await crawl(n, r + 1);
+    } catch (m) {
+      console.error(`Error crawling ${t}: ${m.message}`);
     }
-  } catch (error) {
-    console.error(`Error crawling ${normalizedUrl}: ${error.message}`);
   }
 }
-
-/**
- * Generate sitemap.xml file
- */
 function generateSitemap() {
   console.log("Generating sitemap.xml...");
-
-  const xmlObj = {
-    urlset: {
-      "@xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
-      url: sitemapUrls.map((url) => ({
-        loc: url,
-        changefreq: "weekly",
-        priority: "0.8",
-      })),
+  let r = {
+      urlset: {
+        "@xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
+        url: sitemapUrls.map((e) => ({
+          loc: e,
+          changefreq: "weekly",
+          priority: "0.8",
+        })),
+      },
     },
-  };
-
-  const xml = create(xmlObj).end({ prettyPrint: true });
-
-  fs.writeFileSync("sitemap.xml", xml);
-  console.log(`Sitemap generated with ${sitemapUrls.length} URLs.`);
+    t = e(r).end({ prettyPrint: !0 });
+  fs.writeFileSync("sitemap.xml", t),
+    console.log(`Sitemap generated with ${sitemapUrls.length} URLs.`);
 }
-
-/**
- * Main function
- */
 async function main() {
-  console.log(`Starting crawler at ${baseUrl} with max depth ${maxDepth}`);
-  await crawl(baseUrl);
-  generateSitemap();
+  console.log(`Starting crawler at ${baseUrl} with max depth ${maxDepth}`),
+    await crawl(baseUrl),
+    generateSitemap();
 }
-
-// Start the crawler
-main().catch((error) => {
-  console.error("Crawler failed:", error);
-  process.exit(1);
+main().catch((e) => {
+  console.error("Crawler failed:", e), process.exit(1);
 });
