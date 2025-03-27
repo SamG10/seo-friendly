@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <script>
+      document
+        .getElementById("cta-abonnement")
+        .addEventListener("click", function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "subscribe_click",
+            plan: this.dataset.plan,
+            duration: this.dataset.duree,
+            user_type: "visiteur",
+            language: document.documentElement.lang,
+            page_title: document.title,
+          });
+        });
+    </script>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -97,6 +112,12 @@
             loading="lazy"
           />
           <a href="about.html" class="btn">En savoir plus</a>
+        </section>
+
+        <section>
+          <button id="cta-abonnement" data-plan="Pro" data-duree="12mois">
+            Je m'abonne
+          </button>
         </section>
 
         <section>
