@@ -52,21 +52,6 @@
     />
   </head>
   <body>
-    <script>
-      document
-        .getElementById("cta-abonnement")
-        .addEventListener("click", function () {
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: "subscribe_click",
-            plan: this.dataset.plan,
-            duration: this.dataset.duree,
-            user_type: "visiteur",
-            language: document.documentElement.lang,
-            page_title: document.title,
-          });
-        });
-    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -155,5 +140,20 @@
         </p>
       </div>
     </footer>
+    <script>
+      document
+        .getElementById("cta-abonnement")
+        .addEventListener("click", function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "subscribe_click",
+            plan: this.dataset.plan,
+            duration: this.dataset.duree,
+            user_type: "visiteur",
+            language: document.documentElement.lang,
+            page_title: document.title,
+          });
+        });
+    </script>
   </body>
 </html>
